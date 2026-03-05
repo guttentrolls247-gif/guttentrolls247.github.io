@@ -1,7 +1,9 @@
 /* =========================
    D3LTANIN3ttv • Manic Gaming
    ========================= */
-
+html{
+  overflow-y: scroll;
+}
 :root{
   --bg: #070911;
   --text: rgba(255,255,255,.92);
@@ -870,6 +872,8 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   background: rgba(0,0,0,.85);
   opacity: 0;
   transition: opacity .25s ease;
+
+  contain: layout paint;
 }
 
 .pixelOverlay.is-on{
@@ -885,11 +889,24 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
 }
 
 .px{
+  opacity: 1;
+  transform: scale(1);
   background: rgba(0,0,0,.95);
-  transition: opacity .55s ease, transform .55s ease;
+  transition:
+    opacity .55s cubic-bezier(.2,.8,.2,1),
+    transform .55s cubic-bezier(.2,.8,.2,1);
+  transition-delay: var(--d, 0ms);
 }
 
+/* dissolve trigger (no per-pixel JS class needed) */
+.pixelOverlay__grid.go .px{
+  opacity: 0;
+  transform: scale(.75);
+}
+
+/* optional: keep compatibility if any px.off still happens */
 .px.off{
   opacity: 0;
   transform: scale(.75);
 }
+
