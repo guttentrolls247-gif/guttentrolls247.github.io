@@ -254,6 +254,16 @@ button:focus-visible{
 .skull--dark{ display:block; }
 .skull--light{ display:none; }
 
+:root[data-theme="light"] .brand-logo{
+  border: 1px solid rgba(96, 255, 160, .65);
+  box-shadow:
+    0 0 0 1px rgba(96, 255, 160, .32) inset,
+    0 0 14px rgba(96, 255, 160, .45),
+    0 0 34px rgba(96, 255, 160, .28),
+    0 0 70px rgba(96, 255, 160, .16),
+    0 14px 30px rgba(10,12,18,.16);
+}
+
 :root[data-theme="light"] .skull--dark{ display:none; }
 :root[data-theme="light"] .skull--light{ display:block; }
 
@@ -1357,6 +1367,7 @@ button:focus-visible{
   }
 
 }
+
 
 
 
