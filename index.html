@@ -39,28 +39,39 @@
 
       <!-- NAV ORDER MATCHES YOUR SCREENSHOT -->
       <nav class="nav" aria-label="Primary">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#watch" class="nav-link">Watch</a>
-        <a href="#schedule" class="nav-link">Schedule</a>
-        <a href="#highlights" class="nav-link">Highlights</a>
-        <a href="#games" class="nav-link">Games</a>
-        <a href="#creator" class="nav-link">Creator</a>
+  <button
+    class="nav-link nav-button nav-mobileToggle"
+    type="button"
+    id="mobileNavBtn"
+    aria-expanded="false"
+    aria-controls="mobileNavMenu">
+    Menu <span class="caret">▾</span>
+  </button>
 
-        <div class="nav-dropdown">
-          <button class="nav-link nav-button" type="button" id="linksBtn" aria-expanded="false">
-            Links <span class="caret">▾</span>
-          </button>
-          <div class="nav-menu" id="linksMenu" role="menu" aria-label="Links">
-            <a role="menuitem" href="https://twitch.tv/D3LTANIN3ttv" target="_blank" rel="noreferrer">Twitch</a>
-            <a role="menuitem" href="https://www.youtube.com/@D3LTANIN3ttv" target="_blank" rel="noreferrer">YouTube</a>
-            <a role="menuitem" href="https://www.instagram.com/d3ltanin3ttv/?__pwa=1" target="_blank" rel="noreferrer">Instagram</a>
-          </div>
-        </div>
+  <div class="nav-primary-menu" id="mobileNavMenu">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#watch" class="nav-link">Watch</a>
+    <a href="#schedule" class="nav-link">Schedule</a>
+    <a href="#highlights" class="nav-link">Highlights</a>
+    <a href="#games" class="nav-link">Games</a>
+    <a href="#creator" class="nav-link">Creator</a>
+  </div>
 
-        <button class="nav-link nav-button" id="themeBtn" type="button" aria-label="Toggle theme">
-          <span class="themeBtn__icon" aria-hidden="true">☾</span>
-        </button>
-      </nav>
+  <div class="nav-dropdown">
+    <button class="nav-link nav-button" type="button" id="linksBtn" aria-expanded="false">
+      Links <span class="caret">▾</span>
+    </button>
+    <div class="nav-menu" id="linksMenu" role="menu" aria-label="Links">
+      <a role="menuitem" href="https://twitch.tv/D3LTANIN3ttv" target="_blank" rel="noreferrer">Twitch</a>
+      <a role="menuitem" href="https://www.youtube.com/@D3LTANIN3ttv" target="_blank" rel="noreferrer">YouTube</a>
+      <a role="menuitem" href="https://www.instagram.com/d3ltanin3ttv/?__pwa=1" target="_blank" rel="noreferrer">Instagram</a>
+    </div>
+  </div>
+
+  <button class="nav-link nav-button" id="themeBtn" type="button" aria-label="Toggle theme">
+    <span class="themeBtn__icon" aria-hidden="true">☾</span>
+  </button>
+</nav>
     </div>
   </header>
 
@@ -335,5 +346,6 @@
 </body>
 
 </html>
+
 
 
