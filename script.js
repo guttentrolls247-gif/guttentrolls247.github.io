@@ -368,7 +368,6 @@
     initLinksDropdown();
     initThemeToggle();
     initTwitchEmbed();
-    initYouTubeLiteEmbeds();
     initFooterBits();
     initHighlightCards();
     initGamesMount();
@@ -376,6 +375,7 @@
   });
 
 })();
+
 
 
 
