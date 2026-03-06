@@ -480,7 +480,28 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   box-shadow: 0 16px 40px rgba(0,0,0,.28);
   cursor: pointer;
   isolation:isolate;
+
+  transition:
+     transform .25s ease,
+     box-shadow .25s ease,
+     border-color .25s ease;
 }
+
+.card:hover{
+   transform: translateY(-6px);
+   box-shadow:
+     0 10px 30px rgba(0,0,0,.6),
+     0 0 12px rgba(120,255,120,.35);
+}
+
+.card:focus-visible{
+  outline:none;
+  transform: translateY(-6px);
+  box-shadow:
+     0 10px 30px rgba(0,0,0,.6),
+     0 0 12px rgba(120,255,120,.45);
+}
+
 :root[data-theme="light"] .card{ border-color: rgba(10,12,18,.12); }
 
 .card__bg{
@@ -893,7 +914,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
 .px{
   opacity: 1;
   transform: scale(1);
-  background: rgba(0,0,0,.95);
+  background: rgba(0,0,0,var(--px-a, .95));
   transition:
     opacity .55s cubic-bezier(.2,.8,.2,1),
     transform .55s cubic-bezier(.2,.8,.2,1);
@@ -911,5 +932,6 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   opacity: 0;
   transform: scale(.75);
 }
+
 
 
