@@ -246,45 +246,40 @@
   /* =========================
      Highlight cards -> external links
      ========================= */
-  function initHighlightCards() {
-    const map = {
-      crypts: "https://www.instagram.com/d3ltanin3ttv/?__pwa=1",
-      haunted: "https://www.youtube.com/@D3LTANIN3ttv",
-      darkworlds: "https://x.com/",
-    };
+ function initHighlightCards() {
+  const map = {
+    crypts: "https://www.instagram.com/d3ltanin3ttv/?__pwa=1",
+    haunted: "https://www.youtube.com/@D3LTANIN3ttv",
+    darkworlds: "https://x.com/",
+  };
 
-    const cards = $$(".card[data-open]");
-    if (!cards.length) return;
+  const cards = $$(".card[data-open]");
+  if (!cards.length) return;
 
-   const open = (key) => {
-  const url = map[key];
-  if (!url) return;
+  const open = (key) => {
+    const url = map[key];
+    if (!url) return;
 
-  const newTab = window.open("about:blank", "_blank", "noopener,noreferrer");
-  if (!newTab) return;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
-  runPixelExit(() => {
-    newTab.location.replace(url);
-  });
-};
+  cards.forEach((card) => {
+    const key = card.getAttribute("data-open");
+    if (!key) return;
 
-    cards.forEach((card) => {
-      const key = card.getAttribute("data-open");
-      if (!key) return;
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
+      open(key);
+    });
 
-      card.addEventListener("click", (e) => {
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         open(key);
-      });
-
-      card.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          open(key);
-        }
-      });
+      }
     });
-  }
+  });
+}
 
   /* =========================
      Games section
@@ -417,6 +412,7 @@
     runPixelDissolve();
   });
 })();
+
 
 
 
