@@ -716,9 +716,22 @@ button:focus-visible{
   opacity: .85;
 }
 
-.card__bg--crypts{ background-image: url("./assets/scenes/card-crypts.jpg"); }
-.card__bg--haunted{ background-image: url("./assets/scenes/card-haunted.jpg"); }
-.card__bg--darkworlds{ background-image: url("./assets/scenes/card-dark-worlds.jpg"); }
+.card__bg--crypts{
+  background-image:url("./assets/scenes/card-instagram.png");
+}
+
+.card__bg--haunted{
+  background-image:url("./assets/scenes/card-youtube.png");
+}
+
+.card__bg--darkworlds{
+  background-image:url("./assets/scenes/card-x.png");
+}
+.card__bg{
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.05) contrast(1.08) brightness(.92);
+}
 
 .card__glow{
   position:absolute;
@@ -1382,6 +1395,7 @@ button:focus-visible{
   }
 
 }
+
 
 
 
