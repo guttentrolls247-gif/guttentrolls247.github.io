@@ -263,7 +263,8 @@ function runPixelExit(onDone) {
   setTimeout(() => {
     onDone?.();
     overlay.remove();
-  }, end);}
+  }, end);
+ }
 }    
   /* =========================
      Highlight cards -> external links
@@ -435,6 +436,7 @@ function runPixelExit(onDone) {
   });
 
 })();
+
 
 
 
