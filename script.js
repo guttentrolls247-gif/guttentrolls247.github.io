@@ -284,7 +284,6 @@ function runPixelExit(onDone) {
 
   window.location.href = url;
 };
-};
 
     cards.forEach((card) => {
       const key = card.getAttribute("data-open");
@@ -434,6 +433,7 @@ function runPixelExit(onDone) {
   });
 
 })();
+
 
 
 
