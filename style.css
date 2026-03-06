@@ -902,6 +902,9 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
 .pixelOverlay.is-on{
   opacity: 1;
 }
+.pixelOverlay.fade-out{
+   opacity: 0;
+   transition: opacity .25s ease;
 
 .pixelOverlay__grid{
   position: absolute;
@@ -951,6 +954,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
 #creator .cards{
   margin-top: 22px;
 }
+
 
 
 
