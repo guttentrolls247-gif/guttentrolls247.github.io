@@ -264,6 +264,7 @@ function runPixelExit(onDone) {
     onDone?.();
     overlay.remove();
   }, end);
+}
 }    
   /* =========================
      Highlight cards -> external links
@@ -435,6 +436,7 @@ function runPixelExit(onDone) {
   });
 
 })();
+
 
 
 
