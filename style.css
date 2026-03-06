@@ -1,9 +1,11 @@
 /* =========================
    D3LTANIN3ttv • Manic Gaming
    ========================= */
+
 html{
   overflow-y: scroll;
 }
+
 :root{
   --bg: #070911;
   --text: rgba(255,255,255,.92);
@@ -19,6 +21,10 @@ html{
   --accentA: #1da6ff;
   --accentB: #ff2bd6;
   --accentC: #a6ff2b;
+
+  --pillGrad: linear-gradient(135deg, rgba(29,166,255,.18), rgba(255,43,214,.12));
+  --pillBorder: rgba(29,166,255,.25);
+  --pillGlow: 0 0 0 1px rgba(255,255,255,.08) inset, 0 12px 26px rgba(0,0,0,.35);
 }
 
 :root[data-theme="light"]{
@@ -32,10 +38,15 @@ html{
 
   --shadow: 0 18px 45px rgba(10,12,18,.15);
   --ctaGlow: 0 0 0 1px rgba(0,120,255,.18) inset, 0 0 18px rgba(0,120,255,.12);
+
+  --pillGrad: linear-gradient(135deg, rgba(29,166,255,.16), rgba(255,43,214,.10));
+  --pillBorder: rgba(10,12,18,.18);
 }
 
 *{ box-sizing:border-box; }
+
 html,body{ height:100%; }
+
 body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -44,15 +55,37 @@ body{
   overflow-x:hidden;
 }
 
-a{ color: inherit; text-decoration:none; }
-a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35); outline-offset: 3px; border-radius: 12px; }
+a{
+  color: inherit;
+  text-decoration:none;
+}
+
+a:focus-visible,
+button:focus-visible{
+  outline: 2px solid rgba(255,255,255,.35);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+:root[data-theme="light"] a:focus-visible,
+:root[data-theme="light"] button:focus-visible{
+  outline: 2px solid rgba(10,12,18,.55);
+}
 
 .container{
   width: min(1080px, calc(100% - 40px));
   margin: 0 auto;
 }
 
-.lead{ margin:0; color: var(--muted); line-height: 1.65; }
+.lead{
+  margin:0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.lead--spaced{
+  margin-top: 14px;
+}
 
 /* =========================
    Background
@@ -63,6 +96,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   inset: 0;
   z-index: -1;
 }
+
 .bg__image{
   position:absolute;
   inset:0;
@@ -75,6 +109,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   filter: saturate(1.02) contrast(1.04);
   opacity: .92;
 }
+
 .bg__fog{
   position:absolute;
   inset:0;
@@ -82,6 +117,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   mix-blend-mode: screen;
   opacity: .55;
 }
+
 .fog{
   position:absolute;
   inset:-20%;
@@ -91,13 +127,23 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
     radial-gradient(closest-side at 45% 70%, rgba(255,255,255,.04), transparent 70%);
   filter: blur(18px);
 }
+
 .fog--a{ animation: fogDriftA 22s ease-in-out infinite; }
 .fog--b{ animation: fogDriftB 27s ease-in-out infinite; opacity:.9; }
 .fog--c{ animation: fogDriftC 33s ease-in-out infinite; opacity:.75; }
 
-@keyframes fogDriftA{ 0%,100%{ transform: translate3d(-2%,-1%,0) scale(1.02);} 50%{ transform: translate3d(2%,1%,0) scale(1.05);} }
-@keyframes fogDriftB{ 0%,100%{ transform: translate3d(1%,2%,0) scale(1.03);} 50%{ transform: translate3d(-2%,-1%,0) scale(1.06);} }
-@keyframes fogDriftC{ 0%,100%{ transform: translate3d(0%,1%,0) scale(1.01);} 50%{ transform: translate3d(2%,-2%,0) scale(1.05);} }
+@keyframes fogDriftA{
+  0%,100%{ transform: translate3d(-2%,-1%,0) scale(1.02); }
+  50%{ transform: translate3d(2%,1%,0) scale(1.05); }
+}
+@keyframes fogDriftB{
+  0%,100%{ transform: translate3d(1%,2%,0) scale(1.03); }
+  50%{ transform: translate3d(-2%,-1%,0) scale(1.06); }
+}
+@keyframes fogDriftC{
+  0%,100%{ transform: translate3d(0%,1%,0) scale(1.01); }
+  50%{ transform: translate3d(2%,-2%,0) scale(1.05); }
+}
 
 .bg__vignette{
   position:absolute;
@@ -106,11 +152,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
     radial-gradient(1200px 700px at 50% 25%, rgba(0,0,0,.06), rgba(0,0,0,.80)),
     radial-gradient(900px 600px at 50% 85%, rgba(0,0,0,.22), rgba(0,0,0,.92));
 }
-:root[data-theme="light"] .bg__vignette{
-  background:
-    radial-gradient(1200px 700px at 50% 25%, rgba(0,0,0,.03), rgba(0,0,0,.45)),
-    radial-gradient(900px 600px at 50% 85%, rgba(0,0,0,.08), rgba(0,0,0,.65));
-}
+
 .bg__grain{
   position:absolute;
   inset:0;
@@ -118,6 +160,33 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.06), rgba(255,255,255,.06) 1px, transparent 1px, transparent 3px);
   mix-blend-mode: overlay;
   filter: blur(.4px);
+}
+
+.bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 700px at 50% 20%, rgba(255,255,255,.72), rgba(255,255,255,.12) 55%, rgba(255,255,255,.06) 100%),
+    linear-gradient(to bottom, rgba(255,255,255,.35), rgba(255,255,255,.14));
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+
+:root[data-theme="light"] .bg::after{ opacity: .32; }
+
+:root[data-theme="light"] .bg__image{
+  opacity: .82;
+  filter: saturate(1.05) contrast(1.04) brightness(1.02);
+}
+
+:root[data-theme="light"] .bg__fog{ opacity: .40; }
+
+:root[data-theme="light"] .bg__vignette{
+  background:
+    radial-gradient(1200px 700px at 50% 25%, rgba(0,0,0,.05), rgba(0,0,0,.40)),
+    radial-gradient(900px 600px at 50% 85%, rgba(0,0,0,.10), rgba(0,0,0,.60));
 }
 
 /* =========================
@@ -132,6 +201,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
+
 :root[data-theme="light"] .header{
   background: rgba(255,255,255,.70);
   border-bottom: 1px solid rgba(10,12,18,.10);
@@ -158,10 +228,8 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   height: 58px;
   border-radius: 14px;
   overflow: hidden;
-
   border: 1px solid rgba(140,90,255,.55);
   background: radial-gradient(circle at center, rgba(0,0,0,.85) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.25) 100%);
-
   box-shadow:
     0 0 0 1px rgba(140,90,255,.45) inset,
     0 0 18px rgba(140,90,255,.85),
@@ -176,7 +244,6 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   width:100%;
   height:100%;
   object-fit: fill;
-
   filter:
     contrast(1.35)
     brightness(1.15)
@@ -186,16 +253,23 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
 
 .skull--dark{ display:block; }
 .skull--light{ display:none; }
+
 :root[data-theme="light"] .skull--dark{ display:none; }
 :root[data-theme="light"] .skull--light{ display:block; }
 
-.brand-text{ display:flex; flex-direction:column; line-height:1.05; }
+.brand-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.05;
+}
+
 .brand-name{
   font-weight: 900;
   letter-spacing: .08em;
   text-transform: uppercase;
   font-size: 13px;
 }
+
 .brand-tagline{
   font-size: 11px;
   letter-spacing: .12em;
@@ -211,39 +285,63 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   border-radius: 999px;
   background: rgba(0,0,0,.22);
   backdrop-filter: blur(10px);
+  position: relative;
 }
+
 :root[data-theme="light"] .nav{
   background: rgba(255,255,255,.60);
   border: 1px solid rgba(10,12,18,.12);
 }
 
-.nav-link{
-  font-weight: 800;
-  font-size: 13px;
-  opacity: .96;
+.nav-primary-menu{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+
+.nav-mobileToggle{
+  display:none;
+}
+
+.nav-link,
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
   padding: 10px 12px;
   border-radius: 999px;
-  transition: .18s ease;
+  font-weight: 900;
+  font-size: 13px;
   color: var(--text);
-
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.10);
-}
-:root[data-theme="light"] .nav-link{
-  background: rgba(10,12,18,.05);
-  border: 1px solid rgba(10,12,18,.10);
-}
-.nav-link:hover{
-  opacity: 1;
-  box-shadow: 0 0 0 1px rgba(255,255,255,.14) inset, 0 10px 20px rgba(0,0,0,.18);
+  transition: .18s ease;
+  background: var(--pillGrad);
+  border: 1px solid var(--pillBorder);
 }
 
-.nav-dropdown{ position: relative; }
+.nav-link{
+  opacity: .96;
+}
+
+.nav-link:hover,
+.btn:hover{
+  box-shadow: var(--pillGlow), var(--ctaGlow);
+  transform: translateY(-1px);
+}
+
 .nav-button{
   cursor: pointer;
   appearance: none;
 }
-.caret{ opacity:.8; margin-left: 4px; }
+
+.caret{
+  opacity:.8;
+  margin-left: 4px;
+}
+
+.nav-dropdown{
+  position: relative;
+}
 
 .nav-menu{
   position:absolute;
@@ -257,48 +355,55 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   box-shadow: var(--shadow);
   display:none;
 }
-.nav-menu.is-open{ display:block; }
+
+.nav-menu.is-open{
+  display:block;
+}
+
 .nav-menu a{
   display:block;
-  padding: 10px 10px;
+  padding: 10px;
   border-radius: 10px;
   opacity:.92;
 }
+
 .nav-menu a:hover{
   background: rgba(255,255,255,.06);
   box-shadow: 0 0 0 1px rgba(255,255,255,.10) inset;
 }
+
 :root[data-theme="light"] .nav-menu a:hover{
   background: rgba(10,12,18,.06);
   box-shadow: 0 0 0 1px rgba(10,12,18,.10) inset;
-}
-
-.nav{
-  position: relative;
-}
-
-.nav-primary-menu{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-}
-
-.nav-mobileToggle{
-  display:none;
 }
 
 /* =========================
    Hero
    ========================= */
 
-.hero{ padding: 30px 0 10px; }
+.hero{
+  padding: 30px 0 10px;
+}
+
 .hero-grid{
   display:grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 22px;
   align-items:center;
 }
-.hero-copy{ padding: 10px 0; }
+
+.hero-copy{
+  padding: 10px 0;
+}
+
+:root[data-theme="light"] .hero-copy{
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(10,12,18,.08);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.22) inset;
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  padding: 18px;
+}
 
 .badge{
   display:inline-block;
@@ -311,6 +416,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.10);
 }
+
 :root[data-theme="light"] .badge{
   background: rgba(10,12,18,.05);
   border: 1px solid rgba(10,12,18,.10);
@@ -322,12 +428,14 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   letter-spacing: .06em;
   text-transform: uppercase;
 }
+
 .hero-sub{
   letter-spacing: .14em;
   opacity:.8;
   font-weight: 700;
   font-size: 12px;
 }
+
 .hero-desc{
   margin: 14px 0 0;
   color: var(--muted);
@@ -342,46 +450,23 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   margin-top: 16px;
 }
 
-.btn{
-  display:inline-flex;
+.hero-right{
+  display:flex;
+  flex-direction:column;
   align-items:center;
-  justify-content:center;
-  gap: 10px;
-  padding: 11px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  font-weight: 900;
-  font-size: 13px;
-  transition: .18s ease;
-}
-:root[data-theme="light"] .btn{
-  background: rgba(10,12,18,.05);
-  border: 1px solid rgba(10,12,18,.12);
-}
-.btn:hover{ transform: translateY(-1px); box-shadow: var(--ctaGlow); }
-
-.btn-primary{
-  background: linear-gradient(135deg, rgba(29,166,255,.18), rgba(255,43,214,.12));
-  border-color: rgba(29,166,255,.25);
-}
-.btn-ghost{
-  background: rgba(255,255,255,.04);
 }
 
-/* hero card image */
-.hero-right{ display:flex; flex-direction:column; align-items:center; }
 .heroCard{
   position: relative;
   width: min(420px, 100%);
   aspect-ratio: 16/11;
   border-radius: 20px;
   overflow:hidden;
-  border: none;
   box-shadow:
     var(--shadow),
     0 0 0 1px rgba(255,255,255,.05) inset;
 }
+
 .heroCard::after{
   content:"";
   position:absolute;
@@ -396,7 +481,6 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
     rgba(0,0,0,0) 22%
   );
 }
-:root[data-theme="light"] .heroCard{ border-color: rgba(10,12,18,.12); }
 
 .heroCard__img{
   position:absolute;
@@ -406,6 +490,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   background-position: center;
   filter: saturate(1.05) contrast(1.05);
 }
+
 .heroCard__frame{
   position:absolute;
   inset:0;
@@ -415,12 +500,14 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   mix-blend-mode: screen;
   opacity: .9;
 }
+
 .heroCard__glow{
   position:absolute;
   inset:-20%;
   filter: blur(30px);
   opacity: .5;
 }
+
 .heroCard__glow--a{ background: radial-gradient(circle at 20% 30%, rgba(29,166,255,.35), transparent 55%); }
 .heroCard__glow--b{ background: radial-gradient(circle at 80% 70%, rgba(255,43,214,.30), transparent 55%); }
 
@@ -428,14 +515,21 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
    Sections / Panels
    ========================= */
 
-.section{ padding: 28px 0; }
-.section__head{ margin-bottom: 14px; }
+.section{
+  padding: 28px 0;
+}
+
+.section__head{
+  margin-bottom: 14px;
+}
+
 .section__title{
   margin:0 0 6px;
   font-size: 22px;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
+
 .section__subtitle{
   margin:0;
   color: var(--muted);
@@ -451,11 +545,23 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
     0 0 28px rgba(255,43,214,.12);
 }
 
-.panel--wide{ padding: 18px; }
+.panel--wide{
+  padding: 18px;
+}
 
-.list{ margin:0; padding-left: 18px; }
-.list li{ margin: 10px 0; color: var(--muted); }
-.list strong{ color: var(--text); }
+.list{
+  margin:0;
+  padding-left: 18px;
+}
+
+.list li{
+  margin: 10px 0;
+  color: var(--muted);
+}
+
+.list strong{
+  color: var(--text);
+}
 
 /* =========================
    Watch embed
@@ -467,7 +573,11 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(0,0,0,.35);
 }
-:root[data-theme="light"] .watch__embed{ border-color: rgba(10,12,18,.12); background: rgba(10,12,18,.04); }
+
+:root[data-theme="light"] .watch__embed{
+  border-color: rgba(10,12,18,.12);
+  background: rgba(10,12,18,.04);
+}
 
 #twitchEmbed{
   width: 100%;
@@ -477,14 +587,19 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
 }
 
 /* =========================
-   Highlight cards
+   Creator cards
    ========================= */
+
+#creator .cards{
+  margin-top: 22px;
+}
 
 .cards{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }
+
 .card{
   position: relative;
   border-radius: 18px;
@@ -494,28 +609,30 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   box-shadow: 0 16px 40px rgba(0,0,0,.28);
   cursor: pointer;
   isolation:isolate;
-
   transition:
-     transform .25s ease,
-     box-shadow .25s ease,
-     border-color .25s ease;
+    transform .18s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
 }
 
 .card:hover{
-   box-shadow:
-     0 10px 30px rgba(0,0,0,.6),
-     0 0 12px rgba(120,255,120,.35);
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.6),
+    0 0 12px rgba(120,255,120,.35);
 }
 
 .card:focus-visible{
   outline:none;
-  transform: translateY(-6px);
+  transform: translateY(-2px);
   box-shadow:
-     0 10px 30px rgba(0,0,0,.6),
-     0 0 12px rgba(120,255,120,.45);
+    0 10px 30px rgba(0,0,0,.6),
+    0 0 12px rgba(120,255,120,.45);
 }
 
-:root[data-theme="light"] .card{ border-color: rgba(10,12,18,.12); }
+:root[data-theme="light"] .card{
+  border-color: rgba(10,12,18,.12);
+}
 
 .card__bg{
   position:absolute;
@@ -525,6 +642,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   filter: saturate(1.05) contrast(1.06);
   opacity: .85;
 }
+
 .card__bg--crypts{ background-image: url("./assets/scenes/card-crypts.jpg"); }
 .card__bg--haunted{ background-image: url("./assets/scenes/card-haunted.jpg"); }
 .card__bg--darkworlds{ background-image: url("./assets/scenes/card-dark-worlds.jpg"); }
@@ -537,6 +655,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   mix-blend-mode: screen;
   z-index: 0;
 }
+
 .card__glow--green{ background: radial-gradient(circle at 20% 30%, rgba(166,255,43,.30), transparent 60%); }
 .card__glow--gold{ background: radial-gradient(circle at 20% 30%, rgba(255,200,80,.28), transparent 60%); }
 .card__glow--purple{ background: radial-gradient(circle at 20% 30%, rgba(124,92,255,.30), transparent 60%); }
@@ -555,17 +674,22 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   box-shadow: 0 12px 24px rgba(0,0,0,.25);
   z-index: 2;
 }
+
 .card__icon svg{
   width: 26px;
   height: 26px;
   display:block;
   color: rgba(255,255,255,.92);
 }
+
 :root[data-theme="light"] .card__icon{
   background: rgba(255,255,255,.70);
   border: 1px solid rgba(10,12,18,.12);
 }
-:root[data-theme="light"] .card__icon svg{ color: rgba(10,12,18,.88); }
+
+:root[data-theme="light"] .card__icon svg{
+  color: rgba(10,12,18,.88);
+}
 
 .card__title{
   position:absolute;
@@ -577,6 +701,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   text-transform: uppercase;
   z-index: 2;
 }
+
 .card__meta{
   position:absolute;
   left: 14px;
@@ -585,20 +710,18 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   color: rgba(255,255,255,.78);
   z-index: 2;
 }
-:root[data-theme="light"] .card__meta{ color: rgba(10,12,18,.70); }
 
-.card:hover{ transform: translateY(-2px); transition: .18s ease; }
-
-/* hide card names ONLY in highlights section */
-#highlights .card__title,
-#highlights .card__meta{
-  display: none;
+:root[data-theme="light"] .card__meta{
+  color: rgba(10,12,18,.70);
 }
 
-/* Highlights clip area */
+/* =========================
+   Highlights clips
+   ========================= */
+
 .highlightsClips{
   margin-top: 14px;
-  margin-bottom: 14px; /* keeps a clean gap before the cards */
+  margin-bottom: 14px;
 }
 
 .clipsGrid{
@@ -614,6 +737,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   background: rgba(0,0,0,.18);
   box-shadow: 0 14px 34px rgba(0,0,0,.20);
 }
+
 :root[data-theme="light"] .clipSlot{
   border-color: rgba(10,12,18,.12);
   background: rgba(255,255,255,.22);
@@ -631,7 +755,6 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
     rgba(0,0,0,.22);
 }
 
-/* NEW: make embedded iframes fill the slot cleanly */
 .clipSlot__embed iframe{
   position: absolute;
   inset: 0;
@@ -641,8 +764,57 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   display: block;
 }
 
+.clipThumb{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.clipThumb__img{
+  position: absolute;
+  inset: 0;
+  display: block;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+}
+
+.clipThumb__shade{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.55) 0%,
+    rgba(0,0,0,.18) 45%,
+    rgba(0,0,0,.08) 100%
+  );
+}
+
+.clipThumb__play{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 48px;
+  color: rgba(255,255,255,.96);
+  text-shadow: 0 6px 18px rgba(0,0,0,.55);
+  transition: transform .18s ease, opacity .18s ease;
+}
+
+.clipThumb:hover .clipThumb__play,
+.clipThumb:focus-visible .clipThumb__play{
+  transform: scale(1.08);
+}
+
 /* =========================
-   Games (mounted by JS)
+   Games
    ========================= */
 
 .games{
@@ -650,11 +822,13 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   grid-template-columns: 220px 1fr;
   gap: 16px;
 }
+
 .gameTags{
   display:flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .gameTag{
   width:100%;
   text-align:left;
@@ -667,18 +841,28 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   cursor:pointer;
   transition: .18s ease;
 }
+
 :root[data-theme="light"] .gameTag{
   background: rgba(10,12,18,.04);
   border: 1px solid rgba(10,12,18,.10);
 }
-.gameTag:hover{ box-shadow: var(--ctaGlow); transform: translateY(-1px); }
-.gameTag.is-active{ box-shadow: var(--ctaGlow); border-color: rgba(29,166,255,.28); }
+
+.gameTag:hover{
+  box-shadow: var(--ctaGlow);
+  transform: translateY(-1px);
+}
+
+.gameTag.is-active{
+  box-shadow: var(--ctaGlow);
+  border-color: rgba(29,166,255,.28);
+}
 
 .gameGrid{
   display:grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
+
 .miniCard{
   position:relative;
   border-radius: 16px;
@@ -687,7 +871,10 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   border: 1px solid rgba(255,255,255,.12);
   box-shadow: 0 16px 40px rgba(0,0,0,.22);
 }
-:root[data-theme="light"] .miniCard{ border-color: rgba(10,12,18,.12); }
+
+:root[data-theme="light"] .miniCard{
+  border-color: rgba(10,12,18,.12);
+}
 
 .miniCard__bg{
   position:absolute;
@@ -698,7 +885,6 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   filter: saturate(1.05) contrast(1.06);
 }
 
-/* Games mini cards: readability fix */
 .miniCard__shade{
   position:absolute;
   inset:0;
@@ -711,6 +897,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   );
   pointer-events:none;
 }
+
 :root[data-theme="light"] .miniCard__shade{
   background: linear-gradient(
     to top,
@@ -739,6 +926,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   box-shadow: 0 12px 24px rgba(0,0,0,.25);
   backdrop-filter: blur(6px);
 }
+
 :root[data-theme="light"] .miniCard__badge{
   background: rgba(0,0,0,.62);
   border-color: rgba(255,255,255,.22);
@@ -756,6 +944,7 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   color: rgba(255,255,255,.94);
   text-shadow: 0 2px 12px rgba(0,0,0,.90);
 }
+
 .miniCard__desc{
   position:absolute;
   left: 14px;
@@ -766,32 +955,42 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   color: rgba(255,255,255,.86);
   text-shadow: 0 2px 12px rgba(0,0,0,.90);
 }
+
 :root[data-theme="light"] .miniCard__title{
   color: rgba(255,255,255,.96);
   text-shadow: 0 2px 12px rgba(0,0,0,.92);
 }
+
 :root[data-theme="light"] .miniCard__desc{
   color: rgba(255,255,255,.88);
   text-shadow: 0 2px 12px rgba(0,0,0,.92);
 }
 
-/* Footer */
+/* =========================
+   Footer
+   ========================= */
+
 .footer{
   padding: 28px 0 80px;
 }
+
 .footer__inner{
   display:flex;
   align-items:center;
   justify-content: space-between;
   gap: 12px;
 }
+
 .footer__meta{
   display:flex;
   align-items:center;
   gap: 10px;
   color: var(--muted);
 }
-.dot{ opacity:.6; }
+
+.dot{
+  opacity:.6;
+}
 
 .toTop{
   border-radius: 999px;
@@ -802,9 +1001,12 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   font-weight: 900;
   cursor:pointer;
 }
-.toTop:hover{ box-shadow: var(--ctaGlow); transform: translateY(-1px); }
 
-/* Corner badge (bottom-right manicgaming) */
+.toTop:hover{
+  box-shadow: var(--ctaGlow);
+  transform: translateY(-1px);
+}
+
 .corner-badge{
   position: fixed;
   right: 18px;
@@ -818,86 +1020,16 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   border: 1px solid rgba(255,255,255,.12);
   opacity: .95;
 }
+
 :root[data-theme="light"] .corner-badge{
   border: 1px solid rgba(10,12,18,.12);
   box-shadow: 0 16px 34px rgba(10,12,18,.18);
 }
 
-/* Responsive */
-@media (max-width: 980px){
-  .hero-grid{ grid-template-columns: 1fr; }
-  .brand{ min-width: unset; }
-  .cards{ grid-template-columns: 1fr; }
-  .games{ grid-template-columns: 1fr; }
-  .gameGrid{ grid-template-columns: 1fr; }
-  .clipsGrid{ grid-template-columns: 1fr; }
-}
-
-/* Pill color unification (match "Watch Live") */
-:root{
-  --pillGrad: linear-gradient(135deg, rgba(29,166,255,.18), rgba(255,43,214,.12));
-  --pillBorder: rgba(29,166,255,.25);
-  --pillGlow: 0 0 0 1px rgba(255,255,255,.08) inset, 0 12px 26px rgba(0,0,0,.35);
-}
-:root[data-theme="light"]{
-  --pillGrad: linear-gradient(135deg, rgba(29,166,255,.16), rgba(255,43,214,.10));
-  --pillBorder: rgba(10,12,18,.18);
-}
-.nav-link{
-  background: var(--pillGrad) !important;
-  border: 1px solid var(--pillBorder) !important;
-}
-.nav-link:hover{
-  box-shadow: var(--pillGlow), var(--ctaGlow) !important;
-}
-.hero-actions .btn{
-  background: var(--pillGrad) !important;
-  border: 1px solid var(--pillBorder) !important;
-}
-.hero-actions .btn:hover{
-  box-shadow: var(--pillGlow), var(--ctaGlow) !important;
-}
-
-/* Theme readability fixes (CLEANED) */
-.bg::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(1200px 700px at 50% 20%, rgba(255,255,255,.72), rgba(255,255,255,.12) 55%, rgba(255,255,255,.06) 100%),
-    linear-gradient(to bottom, rgba(255,255,255,.35), rgba(255,255,255,.14));
-  opacity: 0;
-  transition: opacity .22s ease;
-}
-:root[data-theme="light"] .bg::after{ opacity: .32; }
-:root[data-theme="light"] .bg__image{
-  opacity: .82;
-  filter: saturate(1.05) contrast(1.04) brightness(1.02);
-}
-:root[data-theme="light"] .bg__fog{ opacity: .40; }
-:root[data-theme="light"] .bg__vignette{
-  background:
-    radial-gradient(1200px 700px at 50% 25%, rgba(0,0,0,.05), rgba(0,0,0,.40)),
-    radial-gradient(900px 600px at 50% 85%, rgba(0,0,0,.10), rgba(0,0,0,.60));
-}
-:root[data-theme="light"] a:focus-visible,
-:root[data-theme="light"] button:focus-visible{
-  outline: 2px solid rgba(10,12,18,.55);
-}
-:root[data-theme="light"] .hero-copy{
-  background: rgba(255,255,255,.22);
-  border: 1px solid rgba(10,12,18,.08);
-  box-shadow: 0 0 0 1px rgba(255,255,255,.22) inset;
-  border-radius: 18px;
-  backdrop-filter: blur(10px);
-  padding: 18px;
-
-}
 /* =========================
-   Pixel dissolve overlay
-   (required by script.js)
+   Pixel intro overlay
    ========================= */
+
 .pixelOverlay{
   position: fixed;
   inset: 0;
@@ -906,17 +1038,17 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   background: rgba(0,0,0,.85);
   opacity: 0;
   transition: opacity .25s ease;
-
   contain: layout paint;
   transform: translateZ(0);
-  will-change: opacity; 
+  will-change: opacity;
 }
 
 .pixelOverlay.is-on{
   opacity: 1;
 }
+
 .pixelOverlay.fade-out{
-   opacity: 0;
+  opacity: 0;
 }
 
 .pixelOverlay__grid{
@@ -930,111 +1062,72 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
 .px{
   opacity: 1;
   transform: scale(1);
-  background: rgba(0,0,0,var(--px-a, .95));
+  background: rgba(0,0,0,var(--px-a,.95));
   transition:
     opacity .55s cubic-bezier(.2,.8,.2,1),
     transform .55s cubic-bezier(.2,.8,.2,1);
   transition-delay: var(--d, 0ms);
 }
 
-/* dissolve trigger (no per-pixel JS class needed) */
 .pixelOverlay__grid.go .px{
   opacity: 0;
   transform: scale(.75);
 }
 
-/* optional: keep compatibility if any px.off still happens */
 .px.off{
   opacity: 0;
   transform: scale(.75);
 }
 
-#creator .cards{
-  margin-top: 22px;
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 980px){
+  .hero-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .brand{
+    min-width: unset;
+  }
+
+  .games{
+    grid-template-columns: 1fr;
+  }
+
+  .clipsGrid{
+    grid-template-columns: 1fr;
+  }
 }
 
-/* =========================
-   Mobile Layout
-========================= */
-
 @media (max-width: 900px){
+  .cards{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gameGrid{
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   .container{
-    padding: 18px;
-  }
-
-  .nav{
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .hero{
-    padding: 40px 0;
-    text-align: center;
+    width: min(100% - 24px, 1080px);
   }
 
   .section{
-    padding: 40px 0;
+    padding: 22px 0;
   }
 
-  .cards{
-    grid-template-columns: 1fr;
-    gap: 18px;
+  .panel--wide{
+    padding: 16px;
   }
 
-  .card{
-    min-height: 160px;
-  }
-
-  .gameGrid{
-    grid-template-columns: repeat(2,1fr);
-  }
-
-}
-
-@media (max-width: 600px){
-
-  .hero h1{
-    font-size: 1.9rem;
-  }
-
-  .section__title{
-    font-size: 1.4rem;
-  }
-
-  .card{
-    min-height: 140px;
-  }
-
-  .gameGrid{
-    grid-template-columns: 1fr;
-  }
-
-  .miniCard{
-    min-height: 140px;
-  }
-
-}
-
-@media (max-width: 700px){
-  #twitchEmbed{
-    height: 56.25vw;
-    min-height: 220px;
-    max-height: 360px;
+  .hero{
+    padding: 22px 0 8px;
   }
 }
-
-/* =================================
-   Responsive Layout
-================================= */
 
 @media (max-width: 820px){
-
-  /* SHOW the mobile menu button */
-  .nav-mobileToggle{
-    display: inline-flex;
-  }
-
   .header__inner{
     flex-direction: column;
     align-items: stretch;
@@ -1046,28 +1139,20 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   }
 
   .nav{
-    position: relative;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr auto;
     align-items: center;
     gap: 10px;
+    flex-wrap: nowrap;
   }
 
-  .nav-dropdown{
-    width: 100%;
-  }
-
-  .nav-dropdown > .nav-button{
-    width: 100%;
+  .nav-mobileToggle{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
     min-height: 44px;
-    justify-content: center;
-  }
-
-  #themeBtn{
-    min-height: 44px;
-    min-width: 44px;
-    justify-content: center;
+    width: 100%;
   }
 
   .nav-primary-menu{
@@ -1076,18 +1161,15 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
     left: 0;
     right: 0;
     z-index: 40;
-
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
-
     padding: 0 10px;
     border-radius: 14px;
     background: var(--panelSolid);
     border: 1px solid var(--border);
     box-shadow: var(--shadow);
-
     max-height: 0;
     overflow: hidden;
     opacity: 0;
@@ -1115,43 +1197,63 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
     text-align: center;
   }
 
-  .nav-menu{
+  .nav-dropdown{
     width: 100%;
-    right: auto;
+    position: relative;
+  }
+
+  .nav-dropdown > .nav-button{
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  #themeBtn{
+    min-height: 44px;
+    min-width: 44px;
+    justify-content: center;
+  }
+
+  .nav-menu{
+    top: calc(100% + 10px);
     left: 0;
+    right: 0;
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-8px);
+    padding:0 8px;
+    transition:
+      max-height .28s ease,
+      opacity .22s ease,
+      transform .22s ease,
+      padding .22s ease;
   }
-   /* Mobile animation for Links dropdown */
-.nav-menu{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
 
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
-  pointer-events:none;
-  transform:translateY(-8px);
+  .nav-menu.is-open{
+    max-height:220px;
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
+    padding:8px;
+    display:flex;
+  }
 
-  transition:
-    max-height .28s ease,
-    opacity .22s ease,
-    transform .22s ease,
-    padding .22s ease;
+  .nav-menu a{
+    text-align:center;
+  }
 }
 
-.nav-menu.is-open{
-  max-height:220px;
-  opacity:1;
-  pointer-events:auto;
-  transform:translateY(0);
-  padding:8px;
-}
-
-}
-
-@media (max-width: 900px){
-  .cards{
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 700px){
+  #twitchEmbed{
+    height: 56.25vw;
+    min-height: 220px;
+    max-height: 360px;
   }
 }
 
@@ -1159,39 +1261,11 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   .cards{
     grid-template-columns: 1fr;
   }
-}
 
-@media (max-width: 900px){
-  .gameGrid{
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px){
   .gameGrid{
     grid-template-columns: 1fr;
   }
-}
 
-@media (max-width: 900px){
-  .container{
-    width: min(100% - 24px, 1080px);
-  }
-
-  .section{
-    padding: 22px 0;
-  }
-
-  .panel--wide{
-    padding: 16px;
-  }
-
-  .hero{
-    padding: 22px 0 8px;
-  }
-}
-
-@media (max-width: 600px){
   .container{
     width: min(100% - 18px, 1080px);
   }
@@ -1215,19 +1289,22 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   .hero-desc{
     max-width: 100%;
   }
+
+  .footer__inner{
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
-/* =================================
+/* =========================
    Reduced Motion Safety
-================================= */
+   ========================= */
 
 @media (prefers-reduced-motion: reduce){
-
   .pixelOverlay,
-  .px{
+  .px,
+  .fog{
     transition: none !important;
     animation: none !important;
   }
-
 }
-

@@ -4,12 +4,9 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  /* =========================
-     Header: Links dropdown
-     ========================= */
-  function initLinksDropdown() {
-    const btn = $("#linksBtn");
-    const menu = $("#linksMenu");
+  function initDropdown(btnSelector, menuSelector, { closeOnLink = false } = {}) {
+    const btn = $(btnSelector);
+    const menu = $(menuSelector);
     if (!btn || !menu) return;
 
     const close = () => {
@@ -35,46 +32,22 @@
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") close();
     });
+
+    if (closeOnLink) {
+      menu.addEventListener("click", (e) => {
+        if (e.target.closest("a")) close();
+      });
+    }
+  }
+
+  function initLinksDropdown() {
+    initDropdown("#linksBtn", "#linksMenu", { closeOnLink: true });
   }
 
   function initMobileNav() {
-  const btn = $("#mobileNavBtn");
-  const menu = $("#mobileNavMenu");
-  if (!btn || !menu) return;
+    initDropdown("#mobileNavBtn", "#mobileNavMenu", { closeOnLink: true });
+  }
 
-  const close = () => {
-    btn.setAttribute("aria-expanded", "false");
-    menu.classList.remove("is-open");
-  };
-
-  const open = () => {
-    btn.setAttribute("aria-expanded", "true");
-    menu.classList.add("is-open");
-  };
-
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const expanded = btn.getAttribute("aria-expanded") === "true";
-    expanded ? close() : open();
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!menu.contains(e.target) && !btn.contains(e.target)) close();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-  });
-
-  menu.addEventListener("click", (e) => {
-    const link = e.target.closest("a");
-    if (link) close();
-  });
-}
-
-  /* =========================
-     Theme toggle
-     ========================= */
   function initThemeToggle() {
     const btn = $("#themeBtn");
     if (!btn) return;
@@ -135,9 +108,6 @@
     });
   }
 
-  /* =========================
-     Twitch iframe src builder
-     ========================= */
   function initTwitchEmbed() {
     const iframe = $("#twitchEmbed");
     if (!iframe) return;
@@ -154,10 +124,28 @@
       iframe.setAttribute("src", src);
     }
   }
+  function initYouTubeLiteEmbeds() {
+  const thumbs = $$(".clipThumb[data-youtube-id]");
+  if (!thumbs.length) return;
 
-  /* =========================
-     Footer helpers
-     ========================= */
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener("click", () => {
+      const videoId = thumb.getAttribute("data-youtube-id");
+      if (!videoId) return;
+
+      const iframe = document.createElement("iframe");
+      iframe.className = "clipFrame";
+      iframe.title = "YouTube Clip";
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+
+      thumb.replaceWith(iframe);
+    });
+  });
+}
+
   function initFooterBits() {
     const year = $("#year");
     if (year) year.textContent = String(new Date().getFullYear());
@@ -170,9 +158,6 @@
     }
   }
 
-  /* =========================
-     Pixel dissolve intro overlay
-     ========================= */
   function runPixelDissolve() {
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
     if (reduce) return;
@@ -188,6 +173,8 @@
     const cols = 24;
     const rows = 14;
     const total = cols * rows;
+    const delayStep = 7;
+    const pxDuration = 550;
 
     grid.style.setProperty("--cols", String(cols));
     grid.style.setProperty("--rows", String(rows));
@@ -201,13 +188,12 @@
     grid.appendChild(frag);
 
     const pixels = $$(".px", grid);
+    const shuffled = [...pixels].sort(() => Math.random() - 0.5);
 
     requestAnimationFrame(() => overlay.classList.add("is-on"));
 
-    const shuffled = [...pixels].sort(() => Math.random() - 0.5);
-
     shuffled.forEach((px, i) => {
-      px.style.setProperty("--d", `${i * 7}ms`);
+      px.style.setProperty("--d", `${i * delayStep}ms`);
       const alpha = (0.82 + Math.random() * 0.16).toFixed(2);
       px.style.setProperty("--px-a", alpha);
     });
@@ -218,52 +204,45 @@
       });
     });
 
-    const end = total * 7 + 560;
-    setTimeout(() => overlay.classList.add("fade-out"), end - 200);
-    setTimeout(() => overlay.remove(), end + 50);
+    const end = total * delayStep + pxDuration;
+    setTimeout(() => overlay.classList.add("fade-out"), Math.max(end - 200, 0));
+    setTimeout(() => overlay.remove(), end + 60);
   }
 
-  /* =========================
-     Highlight cards -> external links
-     ========================= */
- function initHighlightCards() {
-  const map = {
-    crypts: "https://www.instagram.com/d3ltanin3ttv/?__pwa=1",
-    haunted: "https://www.youtube.com/@D3LTANIN3ttv",
-    darkworlds: "https://x.com/",
-  };
+  function initHighlightCards() {
+    const map = {
+      crypts: "https://www.instagram.com/d3ltanin3ttv/?__pwa=1",
+      haunted: "https://www.youtube.com/@D3LTANIN3ttv",
+      darkworlds: "https://x.com/",
+    };
 
-  const cards = $$(".card[data-open]");
-  if (!cards.length) return;
+    const cards = $$(".card[data-open]");
+    if (!cards.length) return;
 
-  const open = (key) => {
-    const url = map[key];
-    if (!url) return;
+    const open = (key) => {
+      const url = map[key];
+      if (!url) return;
+      window.open(url, "_blank", "noopener,noreferrer");
+    };
 
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
+    cards.forEach((card) => {
+      const key = card.getAttribute("data-open");
+      if (!key) return;
 
-  cards.forEach((card) => {
-    const key = card.getAttribute("data-open");
-    if (!key) return;
-
-    card.addEventListener("click", (e) => {
-      e.preventDefault();
-      open(key);
-    });
-
-    card.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
+      card.addEventListener("click", (e) => {
         e.preventDefault();
         open(key);
-      }
-    });
-  });
-}
+      });
 
-  /* =========================
-     Games section
-     ========================= */
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          open(key);
+        }
+      });
+    });
+  }
+
   function initGamesMount() {
     const mount = $("#gamesMount");
     if (!mount) return;
@@ -379,36 +358,15 @@
     });
   }
 
-  /* =========================
-     Boot
-     ========================= */
   document.addEventListener("DOMContentLoaded", () => {
     initMobileNav();
     initLinksDropdown();
     initThemeToggle();
     initTwitchEmbed();
+    initYouTubeLiteEmbeds();
     initFooterBits();
     initHighlightCards();
     initGamesMount();
     runPixelDissolve();
   });
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
