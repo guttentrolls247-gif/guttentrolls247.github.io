@@ -257,13 +257,16 @@
     if (!cards.length) return;
 
     const open = (key) => {
-      const url = map[key];
-      if (!url) return;
+  const url = map[key];
+  if (!url) return;
 
-      runPixelExit(() => {
-        window.open(url, "_blank", "noopener,noreferrer");
-      });
-    };
+  const newTab = window.open("", "_blank", "noopener,noreferrer");
+  if (!newTab) return;
+
+  runPixelExit(() => {
+    newTab.location.href = url;
+  });
+};
 
     cards.forEach((card) => {
       const key = card.getAttribute("data-open");
@@ -414,6 +417,7 @@
     runPixelDissolve();
   });
 })();
+
 
 
 
