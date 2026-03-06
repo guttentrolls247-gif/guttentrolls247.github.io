@@ -184,7 +184,8 @@
     });
 
     const end = total * 7 + 560;
-    setTimeout(() => overlay.remove(), end);
+    setTimeout(() => overlay.classList.add("fade-out"), end - 200);
+    setTimeout(() => overlay.remove(), end + 50);
   }
 
   function runPixelExit(onDone) {
@@ -413,6 +414,7 @@
     runPixelDissolve();
   });
 })();
+
 
 
 
