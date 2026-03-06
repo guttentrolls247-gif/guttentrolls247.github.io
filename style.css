@@ -1191,3 +1191,16 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   }
 }
 
+/* =================================
+   Reduced Motion Safety
+================================= */
+
+@media (prefers-reduced-motion: reduce){
+
+  .pixelOverlay,
+  .px{
+    transition: none !important;
+    animation: none !important;
+  }
+
+}
