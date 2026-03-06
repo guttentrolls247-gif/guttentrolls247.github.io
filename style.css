@@ -680,6 +680,8 @@ button:focus-visible{
     box-shadow .25s ease,
     border-color .25s ease;
 }
+
+/* gradient overlay for text readability */
 .card::after{
   content:"";
   position:absolute;
@@ -693,44 +695,20 @@ button:focus-visible{
   );
   pointer-events:none;
 }
-.card__bg,
-.card__glow,
-.card__icon,
-.card__title,
-.card__meta{
-  pointer-events:none;
-}
 
-.card:hover{
-  transform: translateY(-2px);
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.6),
-    0 0 12px rgba(120,255,120,.35);
-}
-
-.card:focus-visible{
-  outline:none;
-  transform: translateY(-2px);
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.6),
-    0 0 12px rgba(120,255,120,.45);
-}
-
-:root[data-theme="light"] .card{
-  border-color: rgba(10,12,18,.12);
-}
-
+/* background artwork */
 .card__bg{
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
   filter: brightness(1.02) contrast(1.08) saturate(1.08);
-  opacity: 1;
   transform: scale(1.02);
+  z-index:0;
 }
 
+/* new custom card images */
 .card__bg--crypts{
   background-image:url("./assets/scenes/card-instagram.png");
 }
@@ -742,78 +720,88 @@ button:focus-visible{
 .card__bg--darkworlds{
   background-image:url("./assets/scenes/card-x.png");
 }
-.card__bg{
-  background-size: cover;
-  background-position: center;
-  filter: saturate(1.05) contrast(1.08) brightness(.92);
-}
 
+/* glow layers */
 .card__glow{
-  position: absolute;
-  inset: -20%;
+  position:absolute;
+  inset:-20%;
   filter: blur(24px);
-  opacity: .22;
-  mix-blend-mode: screen;
-  z-index: 0;
+  opacity:.22;
+  mix-blend-mode:screen;
+  z-index:0;
 }
 
-.card__glow--green{ background: radial-gradient(circle at 20% 30%, rgba(166,255,43,.30), transparent 60%); }
-.card__glow--gold{ background: radial-gradient(circle at 20% 30%, rgba(255,200,80,.28), transparent 60%); }
-.card__glow--purple{ background: radial-gradient(circle at 20% 30%, rgba(124,92,255,.30), transparent 60%); }
+.card__glow--green{
+  background: radial-gradient(circle at 20% 30%, rgba(166,255,43,.30), transparent 60%);
+}
 
+.card__glow--gold{
+  background: radial-gradient(circle at 20% 30%, rgba(255,200,80,.28), transparent 60%);
+}
+
+.card__glow--purple{
+  background: radial-gradient(circle at 20% 30%, rgba(124,92,255,.30), transparent 60%);
+}
+
+/* card icon */
 .card__icon{
   position:absolute;
-  top: 14px;
-  left: 14px;
-  width: 44px;
-  height: 44px;
+  top:14px;
+  left:14px;
+  width:44px;
+  height:44px;
   display:grid;
   place-items:center;
-  border-radius: 12px;
-  background: rgba(0,0,0,.35);
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 12px 24px rgba(0,0,0,.25);
-  z-index: 2;
+  border-radius:12px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 12px 24px rgba(0,0,0,.25);
+  z-index:2;
 }
 
 .card__icon svg{
-  width: 26px;
-  height: 26px;
+  width:26px;
+  height:26px;
   display:block;
-  color: rgba(255,255,255,.92);
+  color:rgba(255,255,255,.92);
 }
 
-:root[data-theme="light"] .card__icon{
-  background: rgba(255,255,255,.70);
-  border: 1px solid rgba(10,12,18,.12);
-}
-
-:root[data-theme="light"] .card__icon svg{
-  color: rgba(10,12,18,.88);
-}
-
+/* text */
 .card__title{
   position:absolute;
-  left: 14px;
-  bottom: 34px;
+  left:14px;
+  bottom:34px;
   margin:0;
-  font-weight: 950;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  z-index: 2;
+  font-weight:950;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  z-index:2;
 }
 
 .card__meta{
   position:absolute;
-  left: 14px;
-  bottom: 12px;
+  left:14px;
+  bottom:12px;
   margin:0;
-  color: rgba(255,255,255,.78);
-  z-index: 2;
+  color:rgba(255,255,255,.78);
+  z-index:2;
 }
 
-:root[data-theme="light"] .card__meta{
-  color: rgba(10,12,18,.70);
+/* hover effect */
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.6),
+    0 0 12px rgba(120,255,120,.35);
+}
+
+/* ensure overlay layers don't block clicks */
+.card__bg,
+.card__glow,
+.card__icon,
+.card__title,
+.card__meta{
+  pointer-events:none;
 }
 
 /* =========================
@@ -1410,6 +1398,7 @@ button:focus-visible{
   }
 
 }
+
 
 
 
