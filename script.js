@@ -128,27 +128,6 @@
   iframe.addEventListener("load", () => {
     if (loader) loader.classList.add("is-hidden");
   });
-  }
-  function initYouTubeLiteEmbeds() {
-  const thumbs = $$(".clipThumb[data-youtube-id]");
-  if (!thumbs.length) return;
-
-  thumbs.forEach((thumb) => {
-    thumb.addEventListener("click", () => {
-      const videoId = thumb.getAttribute("data-youtube-id");
-      if (!videoId) return;
-
-      const iframe = document.createElement("iframe");
-      iframe.className = "clipFrame";
-      iframe.title = "YouTube Clip";
-      iframe.loading = "lazy";
-      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-      iframe.allowFullscreen = true;
-      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
-
-      thumb.replaceWith(iframe);
-    });
-  });
 }
 
   function initFooterBits() {
@@ -376,5 +355,6 @@
   });
 
 })();
+
 
 
