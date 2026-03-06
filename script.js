@@ -37,6 +37,41 @@
     });
   }
 
+  function initMobileNav() {
+  const btn = $("#mobileNavBtn");
+  const menu = $("#mobileNavMenu");
+  if (!btn || !menu) return;
+
+  const close = () => {
+    btn.setAttribute("aria-expanded", "false");
+    menu.classList.remove("is-open");
+  };
+
+  const open = () => {
+    btn.setAttribute("aria-expanded", "true");
+    menu.classList.add("is-open");
+  };
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+    expanded ? close() : open();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && !btn.contains(e.target)) close();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+
+  menu.addEventListener("click", (e) => {
+    const link = e.target.closest("a");
+    if (link) close();
+  });
+}
+
   /* =========================
      Theme toggle
      ========================= */
@@ -348,6 +383,7 @@
      Boot
      ========================= */
   document.addEventListener("DOMContentLoaded", () => {
+    initMobileNav();
     initLinksDropdown();
     initThemeToggle();
     initTwitchEmbed();
@@ -357,6 +393,7 @@
     runPixelDissolve();
   });
 })();
+
 
 
 
