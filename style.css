@@ -1147,5 +1147,47 @@ a:focus-visible, button:focus-visible{ outline: 2px solid rgba(255,255,255,.35);
   }
 }
 
+@media (max-width: 900px){
+  .container{
+    width: min(100% - 24px, 1080px);
+  }
 
+  .section{
+    padding: 22px 0;
+  }
+
+  .panel--wide{
+    padding: 16px;
+  }
+
+  .hero{
+    padding: 22px 0 8px;
+  }
+}
+
+@media (max-width: 600px){
+  .container{
+    width: min(100% - 18px, 1080px);
+  }
+
+  .section{
+    padding: 18px 0;
+  }
+
+  .panel--wide{
+    padding: 14px;
+  }
+
+  .hero{
+    padding: 18px 0 6px;
+  }
+
+  .hero-title{
+    font-size: clamp(32px, 9vw, 42px);
+  }
+
+  .hero-desc{
+    max-width: 100%;
+  }
+}
 
