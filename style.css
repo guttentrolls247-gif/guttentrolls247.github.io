@@ -97,6 +97,34 @@ button:focus-visible{
   inset: 0;
   z-index: -1;
 }
+/* =========================
+   Side Texture Overlays
+   ========================= */
+
+.side-texture{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("./assets/scenes/Twitch background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+}
+
+.side-texture--left{
+  left: 0;
+  background-position: left center;
+}
+
+.side-texture--right{
+  right: 0;
+  background-position: right center;
+  transform: scaleX(-1);
+}
 
 .bg__image{
   position:absolute;
