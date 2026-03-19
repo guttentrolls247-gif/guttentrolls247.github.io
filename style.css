@@ -744,23 +744,17 @@ button:focus-visible{
 /* social card images - centered logo fit */
 .card__bg--crypts{
   background-image:url("./assets/scenes/card-instagram.png");
-  background-position:center 43%;
-  background-size:cover;
-  background-repeat:no-repeat;
+  background-position:center 40%;
 }
 
 .card__bg--haunted{
   background-image:url("./assets/scenes/card-youtube.png");
   background-position:center 50%;
-  background-size:cover;
-  background-repeat:no-repeat;
 }
 
 .card__bg--darkworlds{
   background-image:url("./assets/scenes/card-x.png");
-  background-position:center 43%;
-  background-size:cover;
-  background-repeat:no-repeat;
+  background-position:center 42%;
 }
 
 /* glow layers */

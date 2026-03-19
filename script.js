@@ -100,8 +100,11 @@
     };
 
     if (mq) {
-      if (typeof mq.addEventListener === "function") mq.addEventListener("change", onSystemChange);
-      else if (typeof mq.addListener === "function") mq.addListener(onSystemChange);
+      if (typeof mq.addEventListener === "function") {
+        mq.addEventListener("change", onSystemChange);
+      } else if (typeof mq.addListener === "function") {
+        mq.addListener(onSystemChange);
+      }
     }
 
     btn.addEventListener("click", () => {
@@ -156,11 +159,10 @@
     });
   }
 
- function initFooterBits() {
-  const year = $("#year");
-  if (year) year.textContent = String(new Date().getFullYear());
-}
-
+  function initFooterBits() {
+    const year = $("#year");
+    if (year) year.textContent = String(new Date().getFullYear());
+  }
 
   function runPixelDissolve() {
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
