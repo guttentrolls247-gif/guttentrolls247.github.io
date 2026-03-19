@@ -63,7 +63,10 @@
     const setUI = (theme) => {
       root.style.colorScheme = theme;
       btn.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
-      btn.setAttribute("aria-label", theme === "light" ? "Switch to dark theme" : "Switch to light theme");
+      btn.setAttribute(
+        "aria-label",
+        theme === "light" ? "Switch to dark theme" : "Switch to light theme"
+      );
       if (icon) icon.textContent = theme === "light" ? "☀" : "☾";
     };
 
@@ -109,47 +112,49 @@
   }
 
   function initTwitchEmbed() {
-  const iframe = $("#twitchEmbed");
-  const loader = $("#twitchLoader");
-  if (!iframe) return;
+    const iframe = $("#twitchEmbed");
+    const loader = $("#twitchLoader");
+    if (!iframe) return;
 
-  const channel = iframe.getAttribute("data-channel") || "D3LTANIN3ttv";
-  const parent = window.location.hostname || "localhost";
+    const channel = iframe.getAttribute("data-channel") || "D3LTANIN3ttv";
+    const parent = window.location.hostname || "localhost";
 
-  if (!iframe.getAttribute("src")) {
-    const src =
-      `https://player.twitch.tv/?channel=${encodeURIComponent(channel)}` +
-      `&parent=${encodeURIComponent(parent)}` +
-      `&muted=true`;
+    if (!iframe.getAttribute("src")) {
+      const src =
+        `https://player.twitch.tv/?channel=${encodeURIComponent(channel)}` +
+        `&parent=${encodeURIComponent(parent)}` +
+        `&muted=true`;
 
-    iframe.setAttribute("src", src);
+      iframe.setAttribute("src", src);
+    }
+
+    iframe.addEventListener("load", () => {
+      if (loader) loader.classList.add("is-hidden");
+    });
   }
 
-  iframe.addEventListener("load", () => {
-    if (loader) loader.classList.add("is-hidden");
-  });
-}
   function initYouTubeLiteEmbeds() {
-  const thumbs = $$(".clipThumb[data-youtube-id]");
-  if (!thumbs.length) return;
+    const thumbs = $$(".clipThumb[data-youtube-id]");
+    if (!thumbs.length) return;
 
-  thumbs.forEach((thumb) => {
-    thumb.addEventListener("click", () => {
-      const videoId = thumb.getAttribute("data-youtube-id");
-      if (!videoId) return;
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        const videoId = thumb.getAttribute("data-youtube-id");
+        if (!videoId) return;
 
-      const iframe = document.createElement("iframe");
-      iframe.className = "clipFrame";
-      iframe.title = "YouTube Clip";
-      iframe.loading = "lazy";
-      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-      iframe.allowFullscreen = true;
-      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+        const iframe = document.createElement("iframe");
+        iframe.className = "clipFrame";
+        iframe.title = "YouTube Clip";
+        iframe.loading = "lazy";
+        iframe.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
 
-      thumb.replaceWith(iframe);
+        thumb.replaceWith(iframe);
+      });
     });
-  });
-}
+  }
 
   function initFooterBits() {
     const year = $("#year");
@@ -158,7 +163,11 @@
     const toTop = $("#toTopBtn");
     if (toTop) {
       toTop.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
+        });
       });
     }
   }
@@ -368,15 +377,10 @@
     initLinksDropdown();
     initThemeToggle();
     initTwitchEmbed();
+    initYouTubeLiteEmbeds();
     initFooterBits();
     initHighlightCards();
     initGamesMount();
     runPixelDissolve();
   });
-
 })();
-
-
-
-
-
