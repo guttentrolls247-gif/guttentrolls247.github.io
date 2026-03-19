@@ -1,329 +1,425 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D3LTANIN3ttv • Manic Gaming</title>
-  <meta name="description" content="Grunge horror • neon nights — channel hub for D3LTANIN3ttv." />
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3LTANIN3ttv • Manic Gaming</title>
+    <meta
+      name="description"
+      content="Grunge horror • neon nights — channel hub for D3LTANIN3ttv."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
 
-<body>
-  <div class="bg" aria-hidden="true">
-    <div class="bg__image"></div>
-    <div class="bg__fog">
-      <div class="fog fog--a"></div>
-      <div class="fog fog--b"></div>
-      <div class="fog fog--c"></div>
+  <body>
+    <div class="bg" aria-hidden="true">
+      <div class="bg__image"></div>
+      <div class="bg__fog">
+        <div class="fog fog--a"></div>
+        <div class="fog fog--b"></div>
+        <div class="fog fog--c"></div>
+      </div>
+      <div class="bg__vignette"></div>
+      <div class="bg__grain"></div>
     </div>
-    <div class="bg__vignette"></div>
-    <div class="bg__grain"></div>
-  </div>
 
-  <header class="header">
-    <div class="container header__inner">
-      <a class="brand" href="#">
-        <span class="brand-logo" aria-hidden="true">
-          <img class="skull skull--dark" src="./assets/logos/skull-blue.jpg" alt="" />
-          <img class="skull skull--light" src="./assets/logos/skull-green.jpg" alt="" />
-        </span>
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="#">
+          <span class="brand-logo" aria-hidden="true">
+            <img
+              class="skull skull--dark"
+              src="./assets/logos/skull-blue.jpg"
+              alt=""
+            />
+            <img
+              class="skull skull--light"
+              src="./assets/logos/skull-green.jpg"
+              alt=""
+            />
+          </span>
 
-        <span class="brand-text">
-          <span class="brand-name">D3LTANIN3TTV</span>
-          <span class="brand-tagline">GRUNGE HORROR • NEON NIGHTS</span>
-        </span>
-      </a>
+          <span class="brand-text">
+            <span class="brand-name">D3LTANIN3TTV</span>
+            <span class="brand-tagline">GRUNGE HORROR • NEON NIGHTS</span>
+          </span>
+        </a>
 
-      <nav class="nav" aria-label="Primary">
-        <button
-          class="nav-link nav-button nav-mobileToggle"
-          type="button"
-          id="mobileNavBtn"
-          aria-expanded="false"
-          aria-controls="mobileNavMenu">
-          Menu <span class="caret">▾</span>
-        </button>
-
-        <div class="nav-primary-menu" id="mobileNavMenu">
-          <a href="#about" class="nav-link">About</a>
-          <a href="#watch" class="nav-link">Watch</a>
-          <a href="#schedule" class="nav-link">Schedule</a>
-          <a href="#highlights" class="nav-link">Highlights</a>
-          <a href="#games" class="nav-link">Games</a>
-          <a href="#creator" class="nav-link">Creator</a>
-        </div>
-
-        <div class="nav-dropdown">
-          <button class="nav-link nav-button" type="button" id="linksBtn" aria-expanded="false">
-            Links <span class="caret">▾</span>
+        <nav class="nav" aria-label="Primary">
+          <button
+            class="nav-link nav-button nav-mobileToggle"
+            type="button"
+            id="mobileNavBtn"
+            aria-expanded="false"
+            aria-controls="mobileNavMenu"
+          >
+            Menu <span class="caret">▾</span>
           </button>
-          <div class="nav-menu" id="linksMenu" role="menu" aria-label="Links">
-            <a role="menuitem" href="https://twitch.tv/D3LTANIN3ttv" target="_blank" rel="noreferrer">Twitch</a>
-            <a role="menuitem" href="https://www.youtube.com/@D3LTANIN3ttv" target="_blank" rel="noreferrer">YouTube</a>
-            <a role="menuitem" href="https://www.instagram.com/d3ltanin3ttv/?__pwa=1" target="_blank" rel="noreferrer">Instagram</a>
+
+          <div class="nav-primary-menu" id="mobileNavMenu">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#watch" class="nav-link">Watch</a>
+            <a href="#schedule" class="nav-link">Schedule</a>
+            <a href="#highlights" class="nav-link">Highlights</a>
+            <a href="#games" class="nav-link">Games</a>
+            <a href="#creator" class="nav-link">Creator</a>
+          </div>
+
+          <div class="nav-dropdown">
+            <button
+              class="nav-link nav-button"
+              type="button"
+              id="linksBtn"
+              aria-expanded="false"
+            >
+              Links <span class="caret">▾</span>
+            </button>
+            <div class="nav-menu" id="linksMenu" role="menu" aria-label="Links">
+              <a
+                role="menuitem"
+                href="https://twitch.tv/D3LTANIN3ttv"
+                target="_blank"
+                rel="noreferrer"
+                >Twitch</a
+              >
+              <a
+                role="menuitem"
+                href="https://www.youtube.com/@D3LTANIN3ttv"
+                target="_blank"
+                rel="noreferrer"
+                >YouTube</a
+              >
+              <a
+                role="menuitem"
+                href="https://www.instagram.com/d3ltanin3ttv/?__pwa=1"
+                target="_blank"
+                rel="noreferrer"
+                >Instagram</a
+              >
+            </div>
+          </div>
+
+          <button
+            class="nav-link nav-button"
+            id="themeBtn"
+            type="button"
+            aria-label="Toggle theme"
+          >
+            <span class="themeBtn__icon" aria-hidden="true">☾</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="badge">LIVE GRUNGE • DARK • HORROR • FANTASY • RPG</div>
+            <h1 class="hero-title">D3LTANIN3ttv</h1>
+            <div class="hero-sub">GRUNGE HORROR • NEON NIGHTS</div>
+
+            <p class="hero-desc">
+              Streams with a manic, gritty vibe — inside haunted worlds, neon
+              fog, and games that bite back. 🌙 Night streams • 🕯️ Immersion +
+              story • ⚡ Intense games.
+            </p>
+
+            <div class="hero-actions">
+              <a
+                class="btn btn-primary"
+                href="https://www.twitch.tv/d3ltanin3ttv"
+                target="_blank"
+                rel="noreferrer"
+                >Watch Live</a
+              >
+              <a class="btn btn-ghost" href="#highlights">See Highlights</a>
+              <a
+                class="btn btn-ghost"
+                href="https://streamlabs.com/d3ltanin3ttv2/merch"
+                target="_blank"
+                rel="noreferrer"
+                >Merch Store</a
+              >
+            </div>
+          </div>
+
+          <div class="hero-right" aria-hidden="true">
+            <div class="heroCard">
+              <div class="heroCard__img"></div>
+              <div class="heroCard__frame"></div>
+              <div class="heroCard__glow heroCard__glow--a"></div>
+              <div class="heroCard__glow heroCard__glow--b"></div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <button class="nav-link nav-button" id="themeBtn" type="button" aria-label="Toggle theme">
-          <span class="themeBtn__icon" aria-hidden="true">☾</span>
-        </button>
-      </nav>
-    </div>
-  </header>
+      <section class="section container" id="about">
+        <div class="section__head">
+          <h2 class="section__title">About</h2>
+          <p class="section__subtitle">
+            Who I am + what you’ll get when the lights go out.
+          </p>
+        </div>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="badge">LIVE GRUNGE • DARK • HORROR • FANTASY • RPG</div>
-          <h1 class="hero-title">D3LTANIN3ttv</h1>
-          <div class="hero-sub">GRUNGE HORROR • NEON NIGHTS</div>
-
-          <p class="hero-desc">
-            Streams with a manic, gritty vibe — inside haunted worlds, neon fog, and games that bite back.
-            🌙 Night streams • 🕯️ Immersion + story • ⚡ Intense games.
+        <div class="panel panel--wide">
+          <p class="lead">
+            I play a wide range of games — from lighthearted, kid-friendly
+            adventures to brutal, gore-filled nightmares. What pulls me in isn’t
+            just difficulty or shock value — it’s exploration. I love stepping
+            into new worlds, uncovering what they have to offer, and finding
+            what’s hidden in every dark corner.
           </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://www.twitch.tv/d3ltanin3ttv" target="_blank" rel="noreferrer">Watch Live</a>
-            <a class="btn btn-ghost" href="#highlights">See Highlights</a>
-            <a class="btn btn-ghost" href="https://streamlabs.com/d3ltanin3ttv2/merch" target="_blank" rel="noreferrer">Merch Store</a>
-          </div>
+          <p class="lead lead--spaced">
+            I’m striving to grow not only as a streamer and gamer, but as a
+            Computer Science student and a parent. Balancing school, streaming,
+            and fatherhood isn’t easy — but it fuels me. I’m learning to design
+            and build with the tools of programming in a way that truly
+            captivates my curiosity and pushes me to evolve.
+          </p>
+
+          <p class="lead lead--spaced">
+            Gaming isn’t just a hobby for me — it’s a coping mechanism during
+            manic episodes and a way to channel intensity into creativity.
+            Sharing that journey openly is something that brings me real joy. I
+            can’t fully express how much I love the creativity in today’s gaming
+            world in mere words — so instead, I’ll show you the worlds I see…
+            and maybe you’ll begin to see them through my eyes.
+          </p>
+        </div>
+      </section>
+
+      <section class="section container" id="watch">
+        <div class="section__head">
+          <h2 class="section__title">Watch</h2>
+          <p class="section__subtitle">Live player embed + quick jump links.</p>
         </div>
 
-        <div class="hero-right" aria-hidden="true">
-          <div class="heroCard">
-            <div class="heroCard__img"></div>
-            <div class="heroCard__frame"></div>
-            <div class="heroCard__glow heroCard__glow--a"></div>
-            <div class="heroCard__glow heroCard__glow--b"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <div class="panel panel--wide">
+          <div class="watch">
+            <div class="watch__embed">
+              <div class="twitchLoader" id="twitchLoader">
+                <span class="twitchLoader__spinner"></span>
+                <span class="twitchLoader__text">Loading stream...</span>
+              </div>
 
-    <section class="section container" id="about">
-      <div class="section__head">
-        <h2 class="section__title">About</h2>
-        <p class="section__subtitle">Who I am + what you’ll get when the lights go out.</p>
-      </div>
-
-      <div class="panel panel--wide">
-        <p class="lead">
-          I play a wide range of games — from lighthearted, kid-friendly adventures to brutal, gore-filled nightmares.
-          What pulls me in isn’t just difficulty or shock value — it’s exploration. I love stepping into new worlds,
-          uncovering what they have to offer, and finding what’s hidden in every dark corner.
-        </p>
-
-        <p class="lead lead--spaced">
-          I’m striving to grow not only as a streamer and gamer, but as a Computer Science student and a parent.
-          Balancing school, streaming, and fatherhood isn’t easy — but it fuels me. I’m learning to design and build
-          with the tools of programming in a way that truly captivates my curiosity and pushes me to evolve.
-        </p>
-
-        <p class="lead lead--spaced">
-          Gaming isn’t just a hobby for me — it’s a coping mechanism during manic episodes and a way to channel
-          intensity into creativity. Sharing that journey openly is something that brings me real joy.
-          I can’t fully express how much I love the creativity in today’s gaming world in mere words —
-          so instead, I’ll show you the worlds I see… and maybe you’ll begin to see them through my eyes.
-        </p>
-      </div>
-    </section>
-
-    <section class="section container" id="watch">
-      <div class="section__head">
-        <h2 class="section__title">Watch</h2>
-        <p class="section__subtitle">Live player embed + quick jump links.</p>
-      </div>
-
-      <div class="panel panel--wide">
-        <div class="watch">
-          <div class="watch__embed">
-          <div class="twitchLoader" id="twitchLoader">
-            <span class="twitchLoader__spinner"></span>
-            <span class="twitchLoader__text">Loading stream...</span>
-          </div>
-        
-          <iframe
-            id="twitchEmbed"
-            title="Twitch Stream"
-            data-channel="D3LTANIN3ttv"
-            allowfullscreen
-            scrolling="no"
-            loading="lazy">
-          </iframe>
-        </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section container" id="schedule">
-      <div class="section__head">
-        <h2 class="section__title">Schedule</h2>
-        <p class="section__subtitle">A flexible plan — because horror never sleeps.</p>
-      </div>
-
-      <div class="panel panel--wide">
-        <ul class="list">
-          <li><strong>Mon:</strong> 9pm – late • Indie horror / story</li>
-          <li><strong>Wed:</strong> 9pm – late • Survival / roguelike</li>
-          <li><strong>Fri:</strong> 10pm – ??? • Community / chaos</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section container" id="highlights">
-      <div class="section__head">
-        <h2 class="section__title">Highlights</h2>
-        <p class="section__subtitle">Recent clips and epic moments.</p>
-      </div>
-
-      <div class="panel panel--wide highlightsClips" aria-label="Highlight clips area">
-        <div class="clipsGrid">
-          <div class="clipSlot">
-            <div class="clipSlot__embed" aria-label="Twitch clip 1">
               <iframe
-                class="clipFrame"
-                title="Twitch Clip 1"
-                loading="lazy"
+                id="twitchEmbed"
+                title="Twitch Stream"
+                data-channel="D3LTANIN3ttv"
                 allowfullscreen
-                src="https://clips.twitch.tv/embed?clip=CLIP_ID_1&parent=d3ltanin3manicgaming.com&parent=www.d3ltanin3manicgaming.com">
+                scrolling="no"
+                loading="lazy"
+              >
               </iframe>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="clipSlot">
-            <div class="clipSlot__embed" aria-label="Twitch clip 2">
-              <iframe
-                class="clipFrame"
-                title="Twitch Clip 2"
-                loading="lazy"
-                allowfullscreen
-                src="https://clips.twitch.tv/embed?clip=CLIP_ID_2&parent=d3ltanin3manicgaming.com&parent=www.d3ltanin3manicgaming.com">
-              </iframe>
-            </div>
-          </div>
+      <section class="section container" id="schedule">
+        <div class="section__head">
+          <h2 class="section__title">Schedule</h2>
+          <p class="section__subtitle">
+            A flexible plan — because horror never sleeps.
+          </p>
+        </div>
 
-          <!-- YOUTUBE CLIP 1 -->
-<div class="clipSlot">
-  <div class="clipSlot__embed" aria-label="YouTube clip 1">
+        <div class="panel panel--wide">
+          <ul class="list">
+            <li><strong>Mon:</strong> 9pm – late • Indie horror / story</li>
+            <li><strong>Wed:</strong> 9pm – late • Survival / roguelike</li>
+            <li><strong>Fri:</strong> 10pm – ??? • Community / chaos</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section container" id="highlights">
+        <div class="section__head">
+          <h2 class="section__title">Highlights</h2>
+          <p class="section__subtitle">Recent clips and epic moments.</p>
+        </div>
+
+        <div
+          class="panel panel--wide highlightsClips"
+          aria-label="Highlight clips area"
+        >
+          <div class="clipsGrid">
+            <div class="clipSlot">
+  <div class="clipSlot__embed" aria-label="YouTube clip placeholder 1">
     <button
       class="clipThumb"
       type="button"
-      data-youtube-id="ZIPcAaeDdOQ"
-      aria-label="Play YouTube Clip 1">
+      disabled
+      aria-label="YouTube Clip Coming Soon">
       <span
         class="clipThumb__img"
-        style="background-image:url('https://i.ytimg.com/vi/ZIPcAaeDdOQ/hqdefault.jpg');">
+        style="background: linear-gradient(135deg,#111,#222);">
       </span>
       <span class="clipThumb__shade"></span>
-      <span class="clipThumb__play" aria-hidden="true">▶</span>
+      <span class="clipThumb__play">+</span>
     </button>
   </div>
 </div>
 
-          <div class="clipSlot">
-            <div class="clipSlot__embed" aria-label="YouTube clip 2">
-              <iframe
-                class="clipFrame"
-                title="YouTube Clip 2"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                src="https://www.youtube.com/embed/rzl1AG5ry_M?rel=0">
-              </iframe>
+<div class="clipSlot">
+  <div class="clipSlot__embed" aria-label="YouTube clip placeholder 2">
+    <button
+      class="clipThumb"
+      type="button"
+      disabled
+      aria-label="YouTube Clip Coming Soon">
+      <span
+        class="clipThumb__img"
+        style="background: linear-gradient(135deg,#111,#222);">
+      </span>
+      <span class="clipThumb__shade"></span>
+      <span class="clipThumb__play">+</span>
+    </button>
+  </div>
+</div>
+
+            <div class="clipSlot">
+              <div class="clipSlot__embed" aria-label="YouTube clip 3">
+                <button
+                  class="clipThumb"
+                  type="button"
+                  data-youtube-id="ZIPcAaeDdOQ"
+                  aria-label="Play YouTube Clip 3"
+                >
+                  <span
+                    class="clipThumb__img"
+                    style="
+                      background-image: url(&quot;https://i.ytimg.com/vi/ZIPcAaeDdOQ/hqdefault.jpg&quot;);
+                    "
+                  >
+                  </span>
+                  <span class="clipThumb__shade"></span>
+                  <span class="clipThumb__play" aria-hidden="true">▶</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="clipSlot">
+              <div class="clipSlot__embed" aria-label="YouTube clip 4">
+                <button
+                  class="clipThumb"
+                  type="button"
+                  data-youtube-id="rzl1AG5ry_M"
+                  aria-label="Play YouTube Clip 4"
+                >
+                  <span
+                    class="clipThumb__img"
+                    style="
+                      background-image: url(&quot;https://i.ytimg.com/vi/rzl1AG5ry_M/hqdefault.jpg&quot;);
+                    "
+                  >
+                  </span>
+                  <span class="clipThumb__shade"></span>
+                  <span class="clipThumb__play" aria-hidden="true">▶</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section container" id="games">
-      <div class="section__head">
-        <h2 class="section__title">Games</h2>
-        <p class="section__subtitle">Pick a vibe — see the matching lineup.</p>
-      </div>
+      <section class="section container" id="games">
+        <div class="section__head">
+          <h2 class="section__title">Games</h2>
+          <p class="section__subtitle">
+            Pick a vibe — see the matching lineup.
+          </p>
+        </div>
 
-      <div class="panel panel--wide">
-        <div id="gamesMount"></div>
-      </div>
-    </section>
+        <div class="panel panel--wide">
+          <div id="gamesMount"></div>
+        </div>
+      </section>
 
-    <section class="section container" id="creator">
-      <div class="section__head">
-        <h2 class="section__title">Creator</h2>
-        <p class="section__subtitle">Brand, vibe, and collab notes.</p>
-      </div>
+      <section class="section container" id="creator">
+        <div class="section__head">
+          <h2 class="section__title">Creator</h2>
+          <p class="section__subtitle">Brand, vibe, and collab notes.</p>
+        </div>
 
-      <div class="panel panel--wide">
-        <p class="lead">
-          For collabs, sponsorships, or community events: hit the Links menu for socials.
-          I focus on horror/survival/story content with a neon-grunge presentation.
-        </p>
+        <div class="panel panel--wide">
+          <p class="lead">
+            For collabs, sponsorships, or community events: hit the Links menu
+            for socials. I focus on horror/survival/story content with a
+            neon-grunge presentation.
+          </p>
 
         <div class="cards">
-          <article class="card" tabindex="0" aria-label="Open Crypts highlight" data-open="crypts">
-            <div class="card__bg card__bg--crypts"></div>
-            <div class="card__glow card__glow--green"></div>
+  <article class="card" tabindex="0" aria-label="Open Instagram" data-open="crypts">
+    <div class="card__bg card__bg--crypts"></div>
+    <div class="card__glow card__glow--green"></div>
 
-            <div class="card__icon" aria-hidden="true" title="Instagram">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
-                <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2"/>
-                <path d="M17.5 6.8h.01" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-              </svg>
-            </div>
+    <div class="card__icon" aria-hidden="true" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2"/>
+        <path d="M17.5 6.8h.01" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
 
-            <h3 class="card__title">CRYPTS</h3>
-            <p class="card__meta">Instagram</p>
-          </article>
+    <h3 class="card__title">INSTAGRAM</h3>
+    <p class="card__meta">@d3ltanin3ttv</p>
+  </article>
 
-          <article class="card" tabindex="0" aria-label="Open Haunted highlight" data-open="haunted">
-            <div class="card__bg card__bg--haunted"></div>
-            <div class="card__glow card__glow--gold"></div>
+  <article class="card" tabindex="0" aria-label="Open YouTube" data-open="haunted">
+    <div class="card__bg card__bg--haunted"></div>
+    <div class="card__glow card__glow--gold"></div>
 
-            <div class="card__icon" aria-hidden="true" title="YouTube">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M21 12s0-3.6-.45-5.25a2.8 2.8 0 0 0-1.98-1.98C16.9 4.3 12 4.3 12 4.3s-4.9 0-6.57.47A2.8 2.8 0 0 0 3.45 6.75C3 8.4 3 12 3 12s0 3.6.45 5.25a2.8 2.8 0 0 0 1.98 1.98c1.67.47 6.57.47 6.57.47s4.9 0 6.57-.47a2.8 2.8 0 0 0 1.98-1.98C21 15.6 21 12 21 12Z" stroke="currentColor" stroke-width="2"/>
-                <path d="M10 15.5v-7l6 3.5-6 3.5Z" fill="currentColor"/>
-              </svg>
-            </div>
+    <div class="card__icon" aria-hidden="true" title="YouTube">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M21 12s0-3.6-.45-5.25a2.8 2.8 0 0 0-1.98-1.98C16.9 4.3 12 4.3 12 4.3s-4.9 0-6.57.47A2.8 2.8 0 0 0 3.45 6.75C3 8.4 3 12 3 12s0 3.6.45 5.25a2.8 2.8 0 0 0 1.98 1.98c1.67.47 6.57.47 6.57.47s4.9 0 6.57-.47a2.8 2.8 0 0 0 1.98-1.98C21 15.6 21 12 21 12Z" stroke="currentColor" stroke-width="2"/>
+        <path d="M10 15.5v-7l6 3.5-6 3.5Z" fill="currentColor"/>
+      </svg>
+    </div>
 
-            <h3 class="card__title">HAUNTED</h3>
-            <p class="card__meta">YouTube</p>
-          </article>
+    <h3 class="card__title">YOUTUBE</h3>
+    <p class="card__meta">@D3LTANIN3ttv</p>
+  </article>
 
-          <article class="card" tabindex="0" aria-label="Open Dark Worlds highlight" data-open="darkworlds">
-            <div class="card__bg card__bg--darkworlds"></div>
-            <div class="card__glow card__glow--purple"></div>
+  <article class="card" tabindex="0" aria-label="Open X" data-open="darkworlds">
+    <div class="card__bg card__bg--darkworlds"></div>
+    <div class="card__glow card__glow--purple"></div>
 
-            <div class="card__icon" aria-hidden="true" title="X (Twitter)">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M17.9 3H21l-6.8 7.78L22 21h-6.2l-4.85-6.33L5.4 21H2.3l7.4-8.47L2 3h6.35l4.39 5.74L17.9 3Z" fill="currentColor"/>
-              </svg>
-            </div>
+    <div class="card__icon" aria-hidden="true" title="X (Twitter)">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M17.9 3H21l-6.8 7.78L22 21h-6.2l-4.85-6.33L5.4 21H2.3l7.4-8.47L2 3h6.35l4.39 5.74L17.9 3Z" fill="currentColor"/>
+      </svg>
+    </div>
 
-            <h3 class="card__title">DARK WORLDS</h3>
-            <p class="card__meta">Twitter</p>
-          </article>
+    <h3 class="card__title">X</h3>
+    <p class="card__meta">Twitter</p>
+  </article>
+</div>
+</div>
+</section>
+
+      <footer class="footer">
+        <div class="container footer__inner">
+          <button class="toTop" id="toTopBtn" type="button">
+            ↑ Back to top
+          </button>
+          <div class="footer__meta">
+            <span>© <span id="year"></span> D3LTANIN3ttv</span>
+            <span class="dot">•</span>
+            <span>Manic Gaming</span>
+          </div>
         </div>
-      </div>
-    </section>
+      </footer>
+    </main>
 
-    <footer class="footer">
-      <div class="container footer__inner">
-        <button class="toTop" id="toTopBtn" type="button">↑ Back to top</button>
-        <div class="footer__meta">
-          <span>© <span id="year"></span> D3LTANIN3ttv</span>
-          <span class="dot">•</span>
-          <span>Manic Gaming</span>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <img class="corner-badge" src="./assets/logos/manicgaming.jpg" alt="Manic Gaming" />
-</body>
-
+    <img
+      class="corner-badge"
+      src="./assets/logos/manicgaming.jpg"
+      alt="Manic Gaming"
+    />
+  </body>
 </html>

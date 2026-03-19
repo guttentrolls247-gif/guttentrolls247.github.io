@@ -227,7 +227,7 @@
     const map = {
       crypts: "https://www.instagram.com/d3ltanin3ttv/?__pwa=1",
       haunted: "https://www.youtube.com/@D3LTANIN3ttv",
-      darkworlds: "https://x.com/",
+      darkworlds: "https://x.com/D3LTANIN3ttv?s=20",
     };
 
     const cards = $$(".card[data-open]");
