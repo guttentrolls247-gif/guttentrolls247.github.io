@@ -357,7 +357,12 @@
       "Deus Ex: Mankind Divided":
         "https://en.wikipedia.org/wiki/Deus_Ex:_Mankind_Divided",
       "Watch Dogs 2": "https://en.wikipedia.org/wiki/Watch_Dogs_2",
-      Splitgate: "https://en.wikipedia.org/wiki/Splitgate",
+      "Gatekeeper": "https://www.gatekeeper.wiki/",
+    };
+
+    const PLAYLISTS = {
+      "DARK SOULS II":
+        "https://www.youtube.com/playlist?list=PLq-kXBA31NzgiHJ8jma1G5safbBN9pnSy",
     };
 
     const FLAVORS = [
@@ -509,10 +514,10 @@
             badge: "Open World",
           },
           {
-            title: "Splitgate",
-            desc: "Arena chaos with sci-fi energy",
-            img: "./assets/games/splitgate.jpg",
-            badge: "FPS",
+            title: "Gatekeeper",
+            desc: "Roguelike chaos, fast fights, and brutal runs",
+            img: "./assets/games/gatekeeper.jpg",
+            badge: "Roguelike",
           },
         ],
       },
@@ -539,39 +544,40 @@
     const grid = $("#gameGrid", mount);
     if (!tagWrap || !grid) return;
 
-   const cardHTML = (g) => {
-  const img = g.img || "./assets/games/card-dark-worlds.jpg";
-  const badge = g.badge
-    ? `<span class="miniCard__badge">${g.badge}</span>`
-    : "";
+    const cardHTML = (g) => {
+      const img = g.img || "./assets/games/card-dark-worlds.jpg";
+      const badge = g.badge
+        ? `<span class="miniCard__badge">${g.badge}</span>`
+        : "";
 
-  const wiki = WIKI[g.title];
+      const wiki = WIKI[g.title];
+      const playlist = PLAYLISTS[g.title];
 
-  return `
-    <article class="miniCard" tabindex="0">
-      <div class="miniCard__bg" style="background-image:url('${img}')"></div>
-      <div class="miniCard__shade"></div>
+      return `
+        <article class="miniCard" tabindex="0" ${playlist ? `data-playlist="${playlist}"` : ""}>
+          <div class="miniCard__bg" style="background-image:url('${img}')"></div>
+          <div class="miniCard__shade"></div>
 
-      ${badge}
+          ${badge}
 
-      ${
-        wiki
-          ? `<a class="miniCard__wiki" href="${wiki}" target="_blank" rel="noopener noreferrer">ℹ</a>`
-          : ""
-      }
+          ${
+            wiki
+              ? `<a class="miniCard__wiki" href="${wiki}" target="_blank" rel="noopener noreferrer">ℹ</a>`
+              : ""
+          }
 
-      <h4 class="miniCard__title">${g.title}</h4>
-      <p class="miniCard__desc">${g.desc || ""}</p>
-    </article>
-  `;
-};
+          <h4 class="miniCard__title">${g.title}</h4>
+          <p class="miniCard__desc">${g.desc || ""}</p>
+        </article>
+      `;
+    };
 
-    const renderTags = () => {
+    function renderTags() {
       tagWrap.innerHTML = FLAVORS.map((f, idx) => {
         const active = idx === 0 ? "is-active" : "";
         return `<button class="gameTag ${active}" type="button" data-key="${f.key}" data-theme="${f.theme}">${f.label}</button>`;
       }).join("");
-    };
+    }
 
     const renderGrid = (key) => {
       const flavor = FLAVORS.find((f) => f.key === key) || FLAVORS[0];
@@ -591,6 +597,18 @@
 
       const key = btn.getAttribute("data-key");
       if (key) renderGrid(key);
+    });
+
+    grid.addEventListener("click", (e) => {
+      if (e.target.closest(".miniCard__wiki")) return;
+
+      const card = e.target.closest(".miniCard");
+      if (!card) return;
+
+      const playlist = card.getAttribute("data-playlist");
+      if (playlist) {
+        window.open(playlist, "_blank", "noopener,noreferrer");
+      }
     });
   }
 

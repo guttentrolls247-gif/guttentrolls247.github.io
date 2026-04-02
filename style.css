@@ -1369,6 +1369,19 @@ body.is-glow-active::before {
   transform: translateY(-3px);
 }
 
+.miniCard--playable {
+  cursor: pointer;
+}
+
+.miniCard--playable:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 3px;
+}
+
+:root[data-theme="light"] .miniCard--playable:focus-visible {
+  outline: 2px solid rgba(10, 12, 18, 0.55);
+}
+
 .miniCard__bg {
   position: absolute;
   inset: 0;
